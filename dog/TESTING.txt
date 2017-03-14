@@ -1,0 +1,316 @@
+### Log in and cd to the correct directory
+
+raunaks-mbp:~ RaunakBhojwani$ ssh -l bhojwani flume.cs.dartmouth.edu
+Last login: Tue Apr 19 19:22:12 2016 from 10.31.236.33
+
+[flume:~] 101) cd cs50/labs/lab2/dog
+
+[flume:dog] 102) ls
+dog2.c  file1.txt  file2.txt  file3.txt  mapfile.txt  README.txt
+
+### Compile the code as directed
+
+[flume:dog] 103) mygcc -o dog2 dog2.c
+
+[flume:dog] 104) 
+### Test the basic operations: no options or files
+
+
+[flume:dog] 104) ./dog2
+Hello Chaunkai! Hope you are well
+Hello Chaunkai! Hope you are well
+This is me testing no parameters
+This is me testing no parameters
+
+### Test the basic operations: no options with special file
+
+[flume:dog] 105) ./dog2 -
+Hello World
+Hello World
+My name is Raunak Bhojwani, bor on 29 11 1995
+My name is Raunak Bhojwani, bor on 29 11 1995
+
+### Test the basic operations: no options with files including special file and bad file
+
+[flume:dog] 106) ./dog2 file1.txt - file.txt
+hello my name is raunak.
+raunak is really cool.
+he is a wizard.
+like harry potter.
+Hi Chaunkai, the next file is going to be erroneous... let's hope my program catches it
+Hi Chaunkai, the next file is going to be erroneous... let's hope my program catches it
+Error: Could not find the file you have specified
+
+### Test the basic operations: -n option with no files
+
+[flume:dog] 107) ./dog2 -n 
+Hi, I am going to test the -n option with no files
+1 Hi, I am going to test the -n option with no files
+Test test test
+2 Test test test
+Raunak is doing okay so far
+3 Raunak is doing okay so far
+
+### Test the basic operations: -n option with files and special file
+
+[flume:dog] 108) ./dog2 -n file1.txt - file2.txt
+1 hello my name is raunak.
+2 raunak is really cool.
+3 he is a wizard.
+4 like harry potter.
+Hi Chaunkai, looks like this is going okay.
+5 Hi Chaunkai, looks like this is going okay.
+Test test test 777666999666888550044
+6 Test test test 777666999666888550044
+Okay now onto the next file
+7 Okay now onto the next file
+^F
+8 
+OOps
+9 OOps
+Accidentally hit the wrong key
+10 Accidentally hit the wrong key
+NOW - next file
+11 NOW - next file
+12 cs50 is a fun class.
+13 but this testing is really annoying.
+14 lets hope this file works.
+
+### Test the basic operations: -n option with file, special file and bad file
+
+[flume:dog] 109) ./dog2 -n file1.txt - file.txt
+1 hello my name is raunak.
+2 raunak is really cool.
+3 he is a wizard.
+4 like harry potter.
+Next file should CATCH an error!
+5 Next file should CATCH an error!
+Look now
+6 Look now
+Error: Could not find the file you have specified
+
+### Test the basic operations: all three options ERROR
+
+[flume:dog] 110) ./dog2 -n -m mapfile.txt -M mapfile.txt file1.txt -
+Cannot process both -m and -M options. Please choose one.
+
+### Test the basic operations: -m option with no files and correct mapfile
+
+
+[flume:dog] 111) ./dog2 -m mapfile.txt
+Hello, now testing the -m option alone
+Hfmmp, opx uftujoh uif -n pqujpo bmpof
+oh look, it is working
+pi mppl, ju jt xpsljoh
+this could be my own language
+uijt dpvmd cf nz pxo mbohvbhf
+
+### Test the basic operations: -m option with files, special file and correct mapfile
+
+[flume:dog] 112) ./dog2 -m mapfile.txt file1.txt file3.txt - - file2.txt
+ifmmp nz obnf jt sbvobl.
+sbvobl jt sfbmmz dppm.
+if jt b xjabsd.
+mjlf ibssz qpuufs.
+j mjwf jo dvcbj. ju jt b ipu qmbdf.
+uifsf bsf ubmm cvjmdjoht bod gbodz dbst.Hi Chaunkai, now for the two special files
+Hj Cibvolbj, opx gps uif uxp tqfdjbm gjmft
+Now ending file 1
+Npx fodjoh gjmf 1
+^F
+
+Oops
+Opqt
+Now file 2
+Npx gjmf 2
+dt50 jt b gvo dmbtt.
+cvu uijt uftujoh jt sfbmmz boopzjoh.
+mfut ipqf uijt gjmf xpslt.
+
+### Test the basic operations: -m option with files, special file and bad mapfile
+
+[flume:dog] 113) ./dog2 -m mapFile.txt - file1.txt
+Error: the mapfile indicated cannot be opened
+[flume:dog] 114) ./dog2 -M mapfile.txt 
+Now testing -M option
+Nnv sershmf -M noshnm
+lets go!
+kesr fn!
+
+### Test the basic operations: -M option with no files and correct mapfile
+
+[flume:dog] 115) ./dog2 -M mapfile.txt -
+this is going to work
+sghr hr fnhmf sn vnqj
+woohoo
+vnngnn
+
+### Test the basic operations: -M option with files and bad file and correct mapfile
+
+[flume:dog] 116) ./dog2 -M mapfile.txt file1.txt file2.txt nonexistantfile.txt
+gekkn lx mzle hr qztmzj.
+qztmzj hr qezkkx bnnk.
+ge hr z vhyzqc.
+khje gzqqx onsseq.
+br50 hr z etm bkzrr.
+ats sghr sershmf hr qezkkx zmmnxhmf.
+Error: Could not find the file you have specified
+
+### Test the basic operations: -M option with files and bad mapfile
+
+[flume:dog] 117) ./dog2 -M wrongfile.txt file1.txt
+Error: the mapfile indicated cannot be opened
+
+### Test the basic operations: -M option and -n option with special files and correct mapfile
+
+[flume:dog] 118) ./dog2 -M mapfile.txt -n -
+Now testing -M and -n in tandem
+1 Nnv sershmf -M zmc -m hm szmcel
+Looks good so far
+2 Lnnjr fnnc rn ezq
+can i get a 100 on this lab?
+3 bzm h fes z 100 nm sghr kza?
+maximum effort!
+4 lzwhltl eeenqs!
+^[[A
+5 
+
+### Test the basic operations: -M option and -n option with files, with bad file, and correct mapfile
+
+
+[flume:dog] 119) ./dog2 -M mapfile.txt -n file1.txt file2.txt file.txt
+1 gekkn lx mzle hr qztmzj.
+2 qztmzj hr qezkkx bnnk.
+3 ge hr z vhyzqc.
+4 khje gzqqx onsseq.
+5 br50 hr z etm bkzrr.
+6 ats sghr sershmf hr qezkkx zmmnxhmf.
+Error: Could not find the file you have specified
+
+### Test the basic operations: -M option and -n option and -m option (ERROR) and correct mapfile
+
+
+[flume:dog] 120) ./dog2 -M mapfile.txt -n -m file1.txt file2.txt file.txt
+Cannot process both -m and -M options. Please choose one.
+
+### Test the basic operations: -m option and -n option with no files and correct mapfile
+
+
+[flume:dog] 121) ./dog2 -n -m mapfile.txt 
+now testing -m and -n together
+1 opx uftujoh -n bod -o uphfuifs
+everything is going smoothly so far
+2 fwfszuijoh jt hpjoh tnppuimz tp gbs
+i have only 19 minutes to the deadline
+3 j ibwf pomz 19 njovuft up uif dfbdmjof
+so i am going to hurry this up
+4 tp j bn hpjoh up ivssz uijt vq
+
+### Test the basic operations: -m option and -n option with files and bad file and correct mapfile
+
+[flume:dog] 122) ./dog2 -n -m mapfile.txt file1.txt file.txt file2.txt -
+1 ifmmp nz obnf jt sbvobl.
+2 sbvobl jt sfbmmz dppm.
+3 if jt b xjabsd.
+4 mjlf ibssz qpuufs.
+Error: Could not find the file you have specified
+
+### Test the basic operations: -m option and -n option with files special file and correct mapfile
+
+[flume:dog] 123) ./dog2 -n -m mapfile.txt file1.txt file2.txt - file3.txt
+1 ifmmp nz obnf jt sbvobl.
+2 sbvobl jt sfbmmz dppm.
+3 if jt b xjabsd.
+4 mjlf ibssz qpuufs.
+5 dt50 jt b gvo dmbtt.
+6 cvu uijt uftujoh jt sfbmmz boopzjoh.
+Hello, how are you?mf xpslt.
+7 Hfmmp, ipx bsf zpv?
+Lets get on with it
+8 Lfut hfu po xjui ju
+9 j mjwf jo dvcbj. ju jt b ipu qmbdf.
+10 uifsf bsf ubmm cvjmdjoht bod gbodz dbst.
+[flume:dog] 124) ./dog2 -n -m -M
+Error: the mapfile indicated cannot be opened
+
+### Test the basic operations: —-help option, prints readme.txt for more info
+
+[flume:dog] 126) ./dog2 --help
+README for dog.c
+Raunak Bhojwani, April 2016
+
+Compiling:
+	gcc -o dog dog.c
+
+/* ge:
+ * dog.c - provide some functionality of cat with some extra features
+ * 
+ * usage: dog [—-help]
+ * usage: dog [-n] [-m mapfile] [-M mapfile] [-] [filename]...
+ * where:
+ *   —-help is the option that shows this README file for more information
+ *   -n is the option that enables numbered lines for the output
+ *   -m mapfile is the option that takes a filename as an argument and uses it to encrypt its inputs with a simple substitution cipher
+ *   -M mapfile is very similar to -m but it uses the filename to decrypt its inputs
+ *   only one of -m and -M can be used
+ * output:
+ *   read the input from the files or from stdin and depending on the options indicated, output onto stdout. If -n is indicated, include 
+ *   numbered lines. If -m or -M indicated, encrypt/decrypt the input before output to stdout
+ *   
+ * stdin: the files indicated. if special file ‘-‘ indicated, or no files indicated, stdin is used as input
+ * stdout: stdout
+ * stderr: error messages
+ *
+ * Raunak Bhojwani, April 2016
+ */
+
+Example command lines:
+	
+  dog
+  dog —-help
+  dog -n -m mapfile.txt 
+  dog -n filename1 - filename2
+  dog -n -M mapfile.txt filename1 filename2 - - - filename3
+
+Exit status:
+  0 - success
+  1 - unable to understand option/mapfile not given to -m or -M
+  2 - both options -m and -M indicates
+  3 - curl_easy_perform failed
+  4 - code entered could not be found on database
+  5 - incorrect number of parameters.
+
+Assumptions:
+
+- a lot of the functionality of curl is assumed in this program. it is assumed that the station 
+  code must be exactly 4 characters long and be completely uppercase. if this is not the case, an
+  error will be found.
+- i am assuming that you have access to all the files i have submitted in the tarball. my use of the
+  ezxml parser meant that i had to make some files in my weather directory. you shouldn’t have a problem
+  with this, but if you do please download the ezxml parser and use the ‘make’ command in the weather directory
+  before compiling the code.
+
+
+"Non"-Assumptions:
+
+- the four letter code entered must correspond to a code on the weather.gov database, or else an error will be printed.
+
+
+Limitations:
+
+- the program uses only the w1.weather.gov database, so it is not an exhaustive source of weather information.
+  accuracy of the information is entirely dependent on the accuracy of the information of the database.
+
+
+[flume:dog] 127) ./dog2 
+Hi Chaunkai, I am happy with how things are looking. Please let me know how I can improve. Thanks, Ron
+Hi Chaunkai, I am happy with how things are looking. Please let me know how I can improve. Thanks, Ron
+See you soon!
+See you soon!
+
+### Log out!
+
+[flume:dog] 128) exit
+logout
+Connection to flume.cs.dartmouth.edu closed.
+raunaks-mbp:~ RaunakBhojwani$ 

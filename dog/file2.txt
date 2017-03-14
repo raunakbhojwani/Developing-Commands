@@ -1,0 +1,3 @@
+cs50 is a fun class.
+but this testing is really annoying.
+lets hope this file works.

@@ -1,0 +1,132 @@
+### Log in and cd to the correct directory
+
+raunaks-mbp:~ RaunakBhojwani$ ssh -l bhojwani flume.cs.dartmouth.edu
+Last login: Tue Apr 19 17:52:00 2016 from 10.31.236.33
+
+[flume:~] 101) cd cs50/labs/lab2/weather
+
+[flume:weather] 102) ls
+data.xml  ezxml.c  ezxml.h  ezxml.o  GNUmakefile  libezxml.a  Makefile  mycurl.c  mycurl.h  weather.c
+
+[flume:weather] 103) head -16 weather.c
+/* 
+ * weather.c - extract data from the national weather.gov website and parse it for relevant information about a certain location
+ * 
+ * usage: weather CODE
+ * where:
+ *   CODE is the four character, all upper case station code that corresponds to one of the government’s weather stations
+ * output:
+ *   read the CODE and use the curl library to access the appropriate URL for the corresponding station
+ *   if it is a valid url, parse the data available to extract relevant information
+ *   such as: credit, location, station_id, observation_time, weather, temperature_string, relative_humidity, wind_string, and visibility_mi
+ * stdin: stdin
+ * stdout: stdout
+ * stderr: error messages
+ *
+ * Raunak Bhojwani, April 2016
+ */
+
+### Compile the code as directed
+
+[flume:weather] 104) mygcc -o weather weather.c -lcurl ezxml.o
+
+### Test the basic operations: correct codes
+
+[flume:weather] 105) ./weather KMWN
+credit: NOAA's National Weather Service
+location: Mount Washington, NH
+station_id: KMWN
+observation_time: Last Updated on Apr 19 2016, 5:58 pm EDT
+weather: Mostly Cloudy and Windy
+temperature_string: 21.0 F (-6.0 C)
+relative_humidity: 93
+wind_string: from the West at 40.3 gusting to 58.7 MPH (35 gusting to 51 KT)
+visibility_mi: 100.00
+
+[flume:weather] 106) ./weather KCON
+credit: NOAA's National Weather Service
+location: Concord Municipal Airport, NH
+station_id: KCON
+observation_time: Last Updated on Apr 19 2016, 5:51 pm EDT
+weather: Fair
+temperature_string: 58.0 F (14.4 C)
+relative_humidity: 23
+wind_string: from the Northwest at 16.1 gusting to 28.8 MPH (14 gusting to 25 KT)
+visibility_mi: 10.00
+
+[flume:weather] 107) ./weather KMBL
+credit: NOAA's National Weather Service
+location: Manistee, Manistee County-Blacker Airport, MI
+station_id: KMBL
+observation_time: Last Updated on Apr 19 2016, 5:55 pm EDT
+weather: Fair
+temperature_string: 52.0 F (11.0 C)
+relative_humidity: 54
+wind_string: West at 6.9 MPH (6 KT)
+visibility_mi: 10.00
+
+[flume:weather] 108) ./weather KBML
+credit: NOAA's National Weather Service
+location: Berlin, Berlin Municipal Airport, NH
+station_id: KBML
+observation_time: Last Updated on Apr 19 2016, 5:52 pm EDT
+weather: Partly Cloudy
+temperature_string: 50.0 F (10.0 C)
+relative_humidity: 32
+wind_string: from the North at 16.1 gusting to 26.5 MPH (14 gusting to 23 KT)
+visibility_mi: 10.00
+
+### Test error cases where the four letter code does not correspond to one on the weather.gov database
+
+
+[flume:weather] 111) ./weather KMBB
+Error: The station code could not be found.
+
+[flume:weather] 112) ./weather KCOL
+Error: The station code could not be found.
+
+[flume:weather] 113) ./weather AABB
+Error: The station code could not be found.
+
+### Test error cases where the code is not exactly 4 characters
+
+[flume:weather] 115) ./weather AABBB
+Error: The code entered does not contain exactly 4 characters.
+
+[flume:weather] 116) ./weather AABBBrrsnl
+Error: The code entered does not contain exactly 4 characters.
+
+[flume:weather] 118) ./weather KCO
+Error: The code entered does not contain exactly 4 characters.
+
+[flume:weather] 123) ./weather "KCON KMBL"
+Error: The code entered does not contain exactly 4 characters.
+
+### Test error cases where the code is not entirely in uppercase
+
+[flume:weather] 117) ./weather kmbl
+Error: The code entered as a parameter is not in uppercase.
+
+### Test other error cases where ints are passed as parameters
+
+[flume:weather] 119) ./weather 576
+Error: The code entered does not contain exactly 4 characters.
+
+[flume:weather] 120) ./weather 5769
+Error: The code entered as a parameter is not in uppercase.
+
+### Test error cases where there are an incorrect number of parameters passed to weather
+
+[flume:weather] 121) ./weather
+Error: Incorrent number of parameters. Please enter the function call with one parameter, a four character location code
+
+[flume:weather] 122) ./weather KCON KMBL
+Error: Incorrent number of parameters. Please enter the function call with one parameter, a four character location code
+
+
+### Logout after testing
+
+[flume:weather] 124) exit
+logout
+Connection to flume.cs.dartmouth.edu closed.
+raunaks-mbp:~ RaunakBhojwani$ 

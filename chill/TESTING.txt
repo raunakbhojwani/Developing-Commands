@@ -1,0 +1,109 @@
+### Log in and cd to the correct directory
+
+raunaks-mbp:~ RaunakBhojwani$ ssh -l bhojwani flume.cs.dartmouth.edu
+Last login: Tue Apr 19 17:13:02 2016 from 10.31.236.33
+
+[flume:~] 100) cd cs50/labs/lab2/chill
+
+[flume:chill] 101) ls
+chill.c  README.txt
+
+[flume:chill] 102) head -17 chill.c
+/* 
+ * chill.c - calculate the windchill based on current temperature and wind speed
+ * 
+ * usage: chill [temperature] [wind speed]
+ * where:
+ *   temperature is the temperature at which windchill is to be calculated
+ *   wind speed is the velocity of the wind at which windchill is to be calculated
+ * output:
+ *   read the temperature and wind speed and calculate using the formula  Wind Chill = 35.74 + 0.6215T - 35.75(V^0.16) + 0.4275T(V^0.16)
+ *   and print to stdout the temperature, wind speed and corresponding windchill. If no windspeed given, give windchill for 5, 10, 15mph and if no temp
+ *   given, give windchill for -10, 0, 10, 20, 30, 40F. 
+ * stdin: the input template
+ * stdout: the modified template
+ * stderr: error messages
+ *
+ * Raunak Bhojwani, April 2016
+ */
+
+### Compile the code
+
+[flume:chill] 103) mygcc -o chill chill.c -lm
+
+### Test the basic operations: no parameters, one parameter and two parameters, all ints or floats
+
+[flume:chill] 104) ./chill
+Temp	Wind	Chill
+-----	----	-----
+-10.0	5.0	-22.3
+-10.0	10.0	-28.3
+-10.0	15.0	-32.2
+
+0.0	5.0	-10.5
+0.0	10.0	-15.9
+0.0	15.0	-19.4
+
+10.0	5.0	1.2
+10.0	10.0	-3.5
+10.0	15.0	-6.6
+
+20.0	5.0	13.0
+20.0	10.0	8.9
+20.0	15.0	6.2
+
+30.0	5.0	24.7
+30.0	10.0	21.2
+30.0	15.0	19.0
+
+40.0	5.0	36.5
+40.0	10.0	33.6
+40.0	15.0	31.8
+
+
+[flume:chill] 105) ./chill 32
+Temp	Wind	Chill
+-----	----	-----
+32.0	5.0	27.1
+32.0	10.0	23.7
+32.0	15.0	21.6
+
+[flume:chill] 106) ./chill 5 20
+Temp	Wind	Chill
+-----	----	-----
+5.0	20.0	-15.4
+
+### Test simple cases where temperature or wind speed are out of bounds, or too many arguments provided
+
+[flume:chill] 107) ./chill 55
+Temparature must be less than 50 degrees Fahrenheit
+[flume:chill] 108) ./chill 10 0
+Wind Speed must be greater than or equal to 0.5MPH
+[flume:chill] 109) ./chill 55 0
+Temparature must be less than 50 degrees Fahrenheit
+[flume:chill] 110) ./chill 55 0 64
+usage: too many arguments provided. 
+
+[flume:chill] 111) ./chill 55 0 64 76.876503
+usage: too many arguments provided. 
+
+### Test cases where non-ints and non-floats are passed as parameters to chill. NOTE: undesired behavior expected
+
+
+[flume:chill] 112) ./chill r rsb
+Wind Speed must be greater than or equal to 0.5MPH
+[flume:chill] 113) ./chill r b
+Wind Speed must be greater than or equal to 0.5MPH
+[flume:chill] 114) ./chill r r
+Wind Speed must be greater than or equal to 0.5MPH
+[flume:chill] 115) ./chill r R
+Wind Speed must be greater than or equal to 0.5MPH
+[flume:chill] 116) ./chill raunak bhojwani
+Wind Speed must be greater than or equal to 0.5MPH
+
+### Logout after testing
+
+[flume:chill] 117) exit
+logout
+Connection to flume.cs.dartmouth.edu closed.
+raunaks-mbp:~ RaunakBhojwani$ 
